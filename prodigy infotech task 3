@@ -1,0 +1,73 @@
+contacts = []
+
+def add_contact():
+    name = input("Enter contact's name: ")
+    phone = input("Enter contact's phone number: ")
+    email = input("Enter contact's email address: ")
+    contact = {"Name": name, "Phone": phone, "Email": email}
+    contacts.append(contact)
+    print("Contact added successfully!")
+
+def view_contacts():
+    if not contacts:
+        print("No contacts to display.")
+    else:
+        for index, contact in enumerate(contacts, start=1):
+            print(f"Contact {index}:")
+            print(f"Name: {contact['Name']}")
+            print(f"Phone: {contact['Phone']}")
+            print(f"Email: {contact['Email']}")
+            print()
+
+def edit_contact():
+    view_contacts()
+    if not contacts:
+        return
+
+    choice = int(input("Enter the contact number you want to edit: "))
+    if 1 <= choice <= len(contacts):
+        contact = contacts[choice - 1]
+        print("Current Contact Details:")
+        print(f"Name: {contact['Name']}")
+        print(f"Phone: {contact['Phone']}")
+        print(f"Email: {contact['Email']}")
+
+        name = input("Enter new name (leave blank to keep current): ")
+        phone = input("Enter new phone number (leave blank to keep current): ")
+        email = input("Enter new email address (leave blank to keep current): ")
+
+        if name:
+            contact['Name'] = name
+        if phone:
+            contact['Phone'] = phone
+        if email:
+            contact['Email'] = email
+
+        print("Contact edited successfully!")
+    else:
+        print("Invalid contact number.")
+
+def delete_contact():
+    view_contacts()
+    if not contacts:
+        return
+
+    choice = int(input("Enter the contact number you want to delete: "))
+    if 1 <= choice <= len(contacts):
+        del contacts[choice - 1]
+        print("Contact deleted successfully!")
+    else:
+        print("Invalid contact number.")
+
+# Main program loop
+while True:
+    print("\nContact Management System")
+    print("1. Add Contact")
+    print("2. View Contacts")
+    print("3. Edit Contact")
+    print("4. Delete Contact")
+    print("5. Exit")
+
+    option = int(input("Select an option: "))
+
+    if option == 1:
